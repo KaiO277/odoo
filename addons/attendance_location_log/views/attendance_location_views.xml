@@ -1,0 +1,28 @@
+<odoo>
+    <record id="view_attendance_location_tree" model="ir.ui.view">
+        <field name="name">hr.attendance.location.tree</field>
+        <field name="model">hr.attendance</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee_id"/>
+                <field name="check_in"/>
+                <field name="check_out"/>
+                <field name="checkin_map_url"/>
+            </tree>
+        </field>
+    </record>
+
+    <menuitem id="menu_attendance_location_root" name="Bản đồ chấm công"
+              parent="hr_attendance.menu_hr_attendance_root"/>
+
+    <record id="action_attendance_location" model="ir.actions.act_window">
+        <field name="name">Chấm công theo vị trí</field>
+        <field name="res_model">hr.attendance</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_attendance_location_log"
+              name="Danh sách vị trí"
+              parent="menu_attendance_location_root"
+              action="action_attendance_location"/>
+</odoo>
