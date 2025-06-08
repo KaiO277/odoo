@@ -1,15 +1,24 @@
-from odoo import fields, models
+from odoo import models, fields, api
 
 class HrAttendance(models.Model):
     _inherit = 'hr.attendance'
 
-    checkin_map_url = fields.Char("Check-in Map", compute="_compute_checkin_map_url")
+    checkin_latitude = fields.Float(string="Check-in Latitude")
+    checkin_longitude = fields.Float(string="Check-in Longitude")
 
+    checkin_map_url = fields.Char(
+        string="Check-in Map URL",
+        compute="_compute_checkin_map_url",
+        store=True
+    )
+
+    distance_travelled = fields.Float(string="Quãng đường đã di chuyển (km)")
+    sales_report_note = fields.Text(string="Nội dung báo cáo khách hàng")
+
+    @api.depends('checkin_latitude', 'checkin_longitude')
     def _compute_checkin_map_url(self):
         for rec in self:
-            if hasattr(rec, 'checkin_latitude') and hasattr(rec, 'checkin_longitude') and rec.checkin_latitude and rec.checkin_longitude:
-                lat = rec.checkin_latitude
-                lon = rec.checkin_longitude
-                rec.checkin_map_url = f"https://maps.google.com/?q={{lat}},{{lon}}"
+            if rec.checkin_latitude and rec.checkin_longitude:
+                rec.checkin_map_url = f"https://www.google.com/maps?q={rec.checkin_latitude},{rec.checkin_longitude}"
             else:
                 rec.checkin_map_url = ""
