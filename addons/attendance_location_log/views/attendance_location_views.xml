@@ -9,8 +9,9 @@
                 <field name="employee_id" string="Nhân viên Sales"/>
                 <field name="check_in" string="Check-in"/>
                 <field name="check_out" string="Check-out"/>
-                <field name="checkin_latitude"/>
-                <field name="checkin_longitude"/>
+                <field name="customer" />
+                <!-- <field name="checkin_latitude"/>
+                <field name="checkin_longitude"/> -->
                 <field name="checkin_map_url"/>
                 <field name="distance_travelled"/>
                 <field name="sales_report_note"/>
@@ -25,18 +26,21 @@
         <field name="inherit_id" ref="hr_attendance.hr_attendance_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//sheet/group" position="inside">
-                <field name="checkin_latitude"/>
-                <field name="checkin_longitude"/>
-                <field name="checkin_map_url" readonly="1"/>
-                <field name="distance_travelled"/>
-                <field name="sales_report_note"/>
+                <group col="2">
+                    <field name="customer"/>
+                    <field name="checkin_latitude"/>
+                    <field name="checkin_longitude"/>
+                    <field name="checkin_map_url" readonly="1"/>
+                    <field name="distance_travelled"/>
+                    <field name="sales_report_note"/>
+                </group>
             </xpath>
         </field>
     </record>
 
     <!-- Action -->
     <record id="action_attendance_location" model="ir.actions.act_window">
-        <field name="name">Chấm công theo vị trí</field>
+        <field name="name">Check-in theo vị trí</field>
         <field name="res_model">hr.attendance</field>
         <field name="view_mode">list,form</field>
         <field name="view_id" ref="view_attendance_location_list"/>

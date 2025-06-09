@@ -12,6 +12,10 @@ class HrAttendance(models.Model):
         store=True
     )
 
+    customer = fields.Text(
+        string="Tên Khách hàng"
+    )
+
     distance_travelled = fields.Float(string="Quãng đường đã di chuyển (km)")
     sales_report_note = fields.Text(string="Nội dung báo cáo khách hàng")
 
