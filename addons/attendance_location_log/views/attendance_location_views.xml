@@ -48,7 +48,7 @@
 
     <!-- Menu Gốc -->
     <menuitem id="menu_attendance_location_root"
-              name="Bản đồ chấm công"
+              name="Check-in theo vị trí"
               parent="hr_attendance.menu_hr_attendance_root"/>
 
     <!-- Menu con -->
